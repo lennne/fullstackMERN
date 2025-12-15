@@ -2,7 +2,10 @@ const express = require('express')
 const app = express()
 const PORT = process.env.PORT;
 const { logger } = require('./middleware/logger')
+const { errorHandler } = require('./middleware/errorHandler')
 const path = require('path')
+
+
 
 app.use(logger)
 
@@ -22,6 +25,8 @@ app.all(/.*/, (req, res) => {
         res.type('txt').send('404 Not Found')
     }
 })
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
     console.log(PORT)
