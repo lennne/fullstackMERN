@@ -1,7 +1,10 @@
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT;
+const { logger } = require('./middleware/logger')
 const path = require('path')
+
+app.use(logger)
 
 app.use(express.json())
 
