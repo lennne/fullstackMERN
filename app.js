@@ -2,13 +2,18 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
+const mongoose = require('mongoose')
 
 const corsOptions = require('./config/corsOptions')
 const { logger } = require('./middleware/logger')
 const { errorHandler } = require('./middleware/errorHandler')
+const connectDB = require('./config/dbConn') 
+const { logEvents } = require('./middleware/logger')
 
 const app = express()
 const PORT = process.env.PORT;
+
+connectDB()
 
 app.use(logger)
 
@@ -35,7 +40,16 @@ app.all(/.*/, (req, res) => {
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-    console.log(PORT)
-    console.log('running no port 3000')
+mongoose.connection.once('open', () => {
+    console.log('Connected to MongoDB')
+    app.listen(PORT, () => {
+    console.log(`running no port ${PORT}`)
+})
+})
+
+mongoose.connection.on('error', err => {
+    console.log(err)
+    logEvents(`${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`,
+        'mongoErrLog.l'
+    )
 })
