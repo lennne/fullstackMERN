@@ -1,9 +1,10 @@
 const express = require('express')
+const path = require('path')
+const cookieParser = require('cookie-parser')
 const app = express()
 const PORT = process.env.PORT;
 const { logger } = require('./middleware/logger')
 const { errorHandler } = require('./middleware/errorHandler')
-const path = require('path')
 
 
 
