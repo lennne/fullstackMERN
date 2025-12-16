@@ -1,5 +1,6 @@
 import {Outlet } from 'react-router-dom'
 import DashHeader from './DashHeader'
+import DashFooter from './DashFooter'
 
 const DashLayout = () => {
     return (
@@ -10,6 +11,7 @@ const DashLayout = () => {
                 <Outlet />
             </div>
             {/*A footer section for the protected part of the site */}
+            <DashFooter />
         </>
     )
 }
