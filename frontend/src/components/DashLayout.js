@@ -7,7 +7,7 @@ const DashLayout = () => {
         <>
             {/*This header will be on the protected pages of our site */}
             <DashHeader />
-            <div className="dash-contanier">
+            <div className="dash-container">
                 <Outlet />
             </div>
             {/*A footer section for the protected part of the site */}
