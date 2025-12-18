@@ -13,6 +13,8 @@ const DashHeader = () => {
             </div>
         </header>
     )
+
+    return content
 }
 
 export default DashHeader
