@@ -2,9 +2,9 @@ import React from 'react'
 
 const  NotesList = () => {
   return (
-    <div>
+    <h1>
       NotesList
-    </div>
+    </h1>
   )
 }
 
