@@ -1,4 +1,5 @@
-import { createApi, fetchBaseQuery } from '@redujs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
 
 //essentially what we would use axios for
 export const apiSlice = createApi({
