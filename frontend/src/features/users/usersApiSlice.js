@@ -1,4 +1,4 @@
-import { createEntityAdapter } from "@reduxjs/toolkit";
+import { createEntityAdapter, createSelector } from "@reduxjs/toolkit";
 import { apiSlice } from "../../app/api/apiSlice";
 
 const usersAdapter = createEntityAdapter({})
@@ -29,7 +29,8 @@ const initialState = usersAdapter.getInitialState()
 
 export const usersApiSlice = apiSlice.injectEndpoints({ 
     endpoints: builder => ({
-        query: () => '/users',
+        getUsers: builder.query({
+            query: () => '/users',
        /**  
              * `validateStatus` inside the fetchBaseQuery (or a specific endpoint's query configuration) 
              * allows us to customize how Redux Toolkit Query (RTK Query) handles HTTP responses.
@@ -75,13 +76,14 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         }
     })
 })
+})
 
 export const {
     useGetUsersQuery,
 } = usersApiSlice
 
 // returns the query result object
-export const selectUsersResult = usersApiSlice.endpoinits.getUsers.select()
+export const selectUsersResult = usersApiSlice.endpoints.getUsers.select()
 
 /** 
  * creates memoized selector - memoized is used because when react rerenders the page, the same variable is not
